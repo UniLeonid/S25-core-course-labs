@@ -26,7 +26,7 @@ if __name__ == '__main__':
     )
 
     parser.add_argument(
-        '-t', '--tz',
+        '-t', '--timezone',
         help='The timezone to use', type=str,
         default='Europe/Moscow'
     )
@@ -46,8 +46,8 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     timezones = available_timezones()
-    if args.tz not in timezones:
-        print(f"time-application: error: argument -t/--tz: invalid choice: '{args.tz}'", file=stderr)
+    if args.timezone not in timezones:
+        print(f"time-application: error: argument -t/--timezone: invalid choice: '{args.timezone}'", file=stderr)
         print(f'available: {timezones}', file=stderr)
     else:
-        run(create_app(ZonedTimeService(args.tz), HtmlTemplateService()), host=args.host, port=args.port)
+        run(create_app(ZonedTimeService(args.timezone), HtmlTemplateService()), host=args.host, port=args.port)
